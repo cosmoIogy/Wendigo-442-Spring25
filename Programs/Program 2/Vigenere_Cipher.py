@@ -2,7 +2,7 @@ import sys
 
 def encode(plainText, key):
     plainTextLowered = plainText.lower()
-    keyLowered = testKey.lower()
+    keyLowered = key.lower()
     keyLowered = keyLowered.replace(" ", "")
 
     encrypted = ""
