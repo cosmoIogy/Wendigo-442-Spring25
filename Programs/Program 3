@@ -1,0 +1,24 @@
+from ftplib import FTP
+
+#server login info--------------------------------------------
+username = "anonymous"
+password = ""
+host     = "192.168.1.11" #this is the host/VM IP you want to connect to
+filePath = "/7" #desired file path location
+#--------------------------------------------------------------
+
+#login to server
+server = FTP(host)
+server.login(username,password)
+
+#Go to specified Path
+server.cwd(filePath)
+
+#grab file permissions and quit
+files = []
+server.dir(files.append)
+server.quit()
+
+#readable print of collected files
+for i in files:
+    print (i)
