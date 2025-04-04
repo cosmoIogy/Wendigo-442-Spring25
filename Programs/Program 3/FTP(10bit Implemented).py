@@ -90,5 +90,5 @@ if(METHOD==False):
 #print results------------------------------------------------------------------
 print(plaintext)
 #readable print of collected files
-for i in files:
-    print (i)
+#for i in files:
+#    print (i)
