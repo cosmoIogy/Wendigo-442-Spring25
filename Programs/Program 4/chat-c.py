@@ -65,6 +65,12 @@ while True:
         stdout.write(f" [{delta:.3f}]\n")
         stdout.flush()
 
+# Clean the overt message so that it does not print EOF
+cleaned_overt = overt_buffer.replace("EOF", "")
+
+# Final outputs for the overt and covert message
+print(cleaned_overt.strip())  # remove any trailing newlines or spaces
+
 # Close the socket
 s.close()
 
@@ -79,10 +85,5 @@ for i in range(0, len(binstring), 8):
     if covert_message.endswith("EOF"):
         break
 
-# Clean the overt message so that it does not print EOF
-cleaned_overt = overt_buffer.replace("EOF", "")
-
-# Final outputs for the overt and covert message
-print(cleaned_overt.strip())  # remove any trailing newlines or spaces
 print("...")
 print("Covert message:", covert_message[:-3])
