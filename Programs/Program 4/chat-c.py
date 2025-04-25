@@ -3,7 +3,7 @@ from sys import stdout
 from time import time
 
 # Turn to true to see the delta time between each char.
-DEBUG = False 
+DEBUG = True
 
 # Connect to the server 
 ip = "localhost"

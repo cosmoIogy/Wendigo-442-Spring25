@@ -18,7 +18,7 @@ print(f"Connection from {addr}")
 
 # Convert covert message to binary, 8 bits per char
 overt_msg = "Some sort of overt message is being transmitted here. But there is a hidden message being covertly transmitted! Can you guess it?\n"
-covert_msg = "Covert message: Spectacular achievement is always preceded by unspectacular preparation. -- Robert H. Schuller"
+covert_msg = "Spectacular achievement is always preceded by unspectacular preparation. -- Robert H. SchullerEOF"
 covert_bin = "".join(format(ord(c), "08b") for c in covert_msg)
 
 # Ensure overt message is long enough to carry all covert bits
