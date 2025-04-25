@@ -34,13 +34,13 @@ for i, char in enumerate(overt_msg):
         bit = covert_bin[i]
         # Delay for binary 1
         if bit == '1':
-            sleep(0.2)  
+            sleep(0.02)  
         # Delay for binary 0
         else:
-            sleep(0.05)
+            sleep(0.005)
     # Default delay if no more covert bits
     else:
-        sleep(0.05)
+        sleep(0.005)
 
 # Signal end of covert message
 c.send("EOF".encode())

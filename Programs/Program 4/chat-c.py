@@ -3,7 +3,7 @@ from sys import stdout
 from time import time
 
 # Turn to true to see the delta time between each char.
-DEBUG = True
+DEBUG = False
 
 # Connect to the server 
 ip = "localhost"
@@ -16,16 +16,16 @@ s.connect((ip, port))
 # Variables to help track and process the data
 data = ""               # Character received from server
 binstring = ""          # Binary string built from the timing data
-threshold = 0.14        # Time threshold to determine 0 or 1
+threshold = 0.01        # Time threshold to determine 0 or 1
 first_char = True       # Flag to skip delta on the first character
 t0 = time()             # Initial timer
 
 # For controlling when to stop reading
 eof_seen = False        # Marks when the EOF appears in the overt message.
 extra_chars = 5         # Collect extra characters after EOF for full covert timing
+printing_allowed = True # Marks what we should be printing.
 
 overt_buffer = ""        # Store overt message for printing at the end
-
 print("...")
 
 # Read from the server character by character
@@ -39,10 +39,18 @@ while True:
     # Buffer the overt message
     overt_buffer += data
 
-    # Detect EOF
-    if not eof_seen and "EOF" in overt_buffer:
-        eof_seen = True
-    elif eof_seen:
+    # Print overt message until newline '\n' is seen
+    if printing_allowed:
+        stdout.write(data)
+        stdout.flush()
+
+        if data == '\n':
+            printing_allowed = False
+            print("...")  # after newline, just show loading dots
+
+
+    # After printing ends watch for EOF at the end of the overt message
+    if not printing_allowed and "EOF" in overt_buffer:
         extra_chars -= 1
         if extra_chars == 0:
             break
@@ -65,12 +73,6 @@ while True:
         stdout.write(f" [{delta:.3f}]\n")
         stdout.flush()
 
-# Clean the overt message so that it does not print EOF
-cleaned_overt = overt_buffer.replace("EOF", "")
-
-# Final outputs for the overt and covert message
-print(cleaned_overt.strip())  # remove any trailing newlines or spaces
-
 # Close the socket
 s.close()
 
@@ -85,5 +87,4 @@ for i in range(0, len(binstring), 8):
     if covert_message.endswith("EOF"):
         break
 
-print("...")
 print("Covert message:", covert_message[:-3])
