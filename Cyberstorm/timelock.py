@@ -61,7 +61,7 @@ def offset(epoch, current,seconds):
     else:
         return seconds-3600
 
-debug = True
+debug = False
 # if we're debugging, then manually sets the current time to something
 if debug:
     cur2 = "2017 04 23 18 02 06"
@@ -97,6 +97,7 @@ md = md.hexdigest()
 md = hashlib.md5(md.encode()).hexdigest()
 
 
+
 code = ""
 
 mdreverse = md[::-1]
@@ -107,4 +108,4 @@ for i in md:
 for i in mdreverse:
     if (i.isdigit() and len(code) < 4):
         code+=i
-print(code)
+print(code+md[15:17])
