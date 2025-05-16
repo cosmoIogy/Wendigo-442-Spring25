@@ -1,6 +1,11 @@
 PROGRAM 1: ( binary to text convertion )
 
-	python3 binary_decoder.py < *file*
+	- TO RUN:
+		- Using a file:
+			python3 binary_decoder.py < *binarytextFile*
+
+		- Directly:
+			echo "*binary*" | python3 binary_decoder.py
 
 PROGRAM 2: ( vigenere cipher )
 	
@@ -44,9 +49,13 @@ PROGRAM 4: ( chat (timing) covert channel )
 PROGRAM 5: ( timelock )
 
 	- TO RUN:
-		echo "2000 00 00 00 00 00" | python3 timelock.py
+		Using a file:
+			python3 timelock.py < *epochtimeFile*			
 
-	Where "2000 00 00 00 00 00" is the epoch time, usually found in a hint.
+		Directly:
+			echo "2000 00 00 00 00 00" | python3 timelock.py
+
+	Where "2000 00 00 00 00 00" is the epoch time ( This will change per challenge ), usually found in a hint.
 	You can manually change the epoch time by changing the DEBUG to true, and update the "cur2" variable
 
 PROGRAM 6: ( xor )
@@ -55,10 +64,10 @@ PROGRAM 6: ( xor )
 	
 	- TO RUN:	
 		- DECRYPT:
-			python3 xor.py < *ciphertext*
+			python3 xor.py < *ciphertextFile*
 
 		- ENCRYPT:
-			python3 xor.py < *plaintext* > *ciphertext*
+			python3 xor.py < *plaintextFile* > *ciphertextFile*
 
 PROGRAM 7: ( steg )
 
